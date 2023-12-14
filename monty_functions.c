@@ -2,7 +2,7 @@
 
 /**
  * validate_arg - This function checks for the number of arguments
- * @args: The number of arguments
+ * @argc: The number of arguments
  */
 
 void validate_arg(int argc)
@@ -17,14 +17,16 @@ void validate_arg(int argc)
  * initialise_arg - This function initializes a pointer to the arg_s struct
  *
  */
-void initialise_arg()
+void initialise_arg(void)
 {
 	statements = malloc(sizeof(argument_t));
 	if (statements == NULL)
 		malloc_fails();
 
 	statement->line = NULL;
-	statement->stream =NULL;
+	statement->stream = NULL;
+	statement->token_num = 0;
+	statement->line_count = 0;
 }
 
 /**

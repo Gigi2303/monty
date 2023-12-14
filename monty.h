@@ -66,5 +66,6 @@ void getstream(char *file_name);
 void initialise_arg();
 void validate_arg(int argc);
 int main(int argc, char **argv);
+void token_line(void);
 
 #endif /* MONTY_H */
