@@ -46,8 +46,24 @@ void instruct_error(void)
 {
 	dprintf(2, "L%d; Unkown instruction %s\n",
 			statement->line_count, statement_token[0]);
-	close_stream();
+	s_close();
 	free_token();
 	free_arg();
 	exit(EXIT_FAILURE);
+}
+/**
+ * run_instructions -This function runs the valid instructions from the file
+ */
+void run_instructions(void)
+{
+	stack_t *stack = NULL;
+
+	if (statement->token_num == 0) /* Check if there are no instructions to run */
+	{
+		return;
+	}
+	else
+	{
+	statement->instruct->f(&stack, statement->line_num); /** Execute the instruction function */
+	}
 }

@@ -56,6 +56,8 @@ typedef struct argument_s
 	unsigned int line_count;
 	char **token;
 	int token_num;
+	int s_length;
+	char *head;
 	instruction_t *instruct;
 }argument_t;
 

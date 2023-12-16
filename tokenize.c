@@ -35,3 +35,21 @@ void token_line(void)
 	statement->token[c];
 	free(temp);
 }
+
+/**
+ * free_token - this function frees the memory assigned to tokens
+ */
+void free_token(void)
+{
+	int cg;
+
+	if (NULL == statement->token)
+		return;
+	while (statement->token[cg])
+	{
+		free(statement->token[cg]);
+		cg++;
+	}
+	free(statement->token);
+	statement->token = NULL;
+}

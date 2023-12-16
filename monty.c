@@ -25,7 +25,7 @@ int main(int argc, char **argv)
 		run_instructions(); /*run functions in opcodes*/
 		free_token(); /*free up memory*/
 	}
-	close_stream();
+	s_close();
 	free_arg();
 
 	return (0);

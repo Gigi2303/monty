@@ -27,6 +27,8 @@ void initialise_arg(void)
 	statement->stream = NULL;
 	statement->token_num = 0;
 	statement->line_count = 0;
+	statement->s_length = 0;
+	statement->head = NULL;
 }
 
 /**
