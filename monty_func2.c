@@ -6,12 +6,12 @@
 
 void s_close(void)
 {
-	if (statement->stream == NULL)
+	if (statements->stream == NULL)
 		return;
 
-	if (fclose(statement->stream))
+	if (fclose(statements->stream))
 	{
-	statement->stream = NULL;
+	statements->stream = NULL;
 	}
 	else
 	{
@@ -43,4 +43,18 @@ int num_check(char *str)
 		}
 	}
 	return (1);
+}
+
+/**
+ * del_stacknode - this function deletes the node at the top of the stack
+ *
+ * Return: returns nothing
+ */
+void del_stacknode(void)
+{
+	stack_t *temp;
+
+	temp = statements->head;
+	statements->head = temp->next;
+	free(temp);
 }

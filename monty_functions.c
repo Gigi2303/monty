@@ -19,16 +19,16 @@ void validate_arg(int argc)
  */
 void initialise_arg(void)
 {
-	statements = malloc(sizeof(argument_t));
-	if (statements == NULL)
+	statementss = malloc(sizeof(argument_t));
+	if (statementss == NULL)
 		malloc_fails();
 
-	statement->line = NULL;
-	statement->stream = NULL;
-	statement->token_num = 0;
-	statement->line_count = 0;
-	statement->s_length = 0;
-	statement->head = NULL;
+	statementss->line = NULL;
+	statementss->stream = NULL;
+	statementss->token_num = 0;
+	statementss->line_count = 0;
+	statementss->s_length = 0;
+	statementss->head = NULL;
 }
 
 /**
@@ -49,7 +49,7 @@ void malloc_fails(void)
 void failed_getstream(char *file_name)
 {
 	dprintf(stderr, "Error: Can't open file %s\n");
-	free_args();
+	free_arg();
 	exit(EXIT_FAILURE);
 }
 /**
@@ -65,8 +65,8 @@ void getstream(char *file_name)
 	{
 		failed_getstream(file_name);
 	}
-	statement->stream = cg(cg, "r");
-	if (statement->stream == NULL)
+	statements->stream = cg(cg, "r");
+	if (statements->stream == NULL)
 	{
 		close(cg);
 		failed_getstream(file_name);

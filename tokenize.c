@@ -1,4 +1,4 @@
-#include "main.h"
+#include "monty.h"
 
 /**
  * token_line - This function breaks the line into words
@@ -11,28 +11,28 @@ void token_line(void)
 	char *delim = " \n";
 	char *token = NULL, *temp = NULL;
 
-	temp = malloc(sizeof(char) * (strlen(statement->line) + 1));
-	strcpy(temp, statements->line);
-	statement->token_num = 0;
+	temp = malloc(sizeof(char) * (strlen(statements->line) + 1));
+	strcpy(temp, statementss->line);
+	statements->token_num = 0;
 	token = strtok(temp, delim);
 
 	while (token)
 	{
-		statement->token_num += 1;
+		statements->token_num += 1;
 		token = strtok(NULL, delim);
 	}
-	statement->token = malloc(sizeof(char *) * (statement->token_num + 1));
-	strcpy(temp, statement->line);
+	statements->token = malloc(sizeof(char *) * (statements->token_num + 1));
+	strcpy(temp, statements->line);
 	while (token)
 	{
-		statement->token[c] = malloc(sizeof(char) * (strlen(token) + 1));
-		if (statement->token[c] == NULL)
+		statements->token[c] = malloc(sizeof(char) * (strlen(token) + 1));
+		if (statements->token[c] == NULL)
 		malloc_fails();
-		strcpy(statement->token[c], token);
+		strcpy(statements->token[c], token);
 		token = strok(NULL, delim);
 		c++;
 	}
-	statement->token[c];
+	statements->token[c];
 	free(temp);
 }
 
@@ -43,13 +43,13 @@ void free_token(void)
 {
 	int cg;
 
-	if (NULL == statement->token)
+	if (NULL == statements->token)
 		return;
-	while (statement->token[cg])
+	while (statements->token[cg])
 	{
-		free(statement->token[cg]);
+		free(statements->token[cg]);
 		cg++;
 	}
-	free(statement->token);
-	statement->token = NULL;
+	free(statements->token);
+	statements->token = NULL;
 }

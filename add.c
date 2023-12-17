@@ -3,10 +3,11 @@
 /**
  * f_add - adds top two elements of the stack
  * @head: stack head
- * @counter: line_number
+ * @line_count: number of line opcode occurs on
  * Return: NULL
  */
-void f_add(stack_t **head, unsigned int counter)
+
+void f_add(stack_t **head, unsigned int line_count)
 {
 	stack_t *h;
 	int len = 0, aux;
@@ -19,10 +20,10 @@ void f_add(stack_t **head, unsigned int counter)
 	}
 	if (len < 2)
 	{
-		printf(stderr, "L%d: can't add, stack too short\n", counter);
+		printf(stderr, "L%d: can't add, stack too short\n", line_count);
 		fclose(bus.file);
 		free(bus.content);
-		free_stack(*head);
+		free_s(*head);
 		exit(EXIT_FAILURE);
 	}
 	h = *head;

@@ -25,14 +25,22 @@ void fetch_instructions(void)
 		{"rotr", _rotr},
 		{NULL, NULL},
 	};
-	if (statement->token_num == 0)
+	if (statements->token_num == 0)
 		return;
+
+	if (statements->token[0][0] == '#')
+	{
+		statements->instruct->opcode = "nop";
+		statements->instruct->f = nop;
+		return;
+	}
+
 	for (; instruct[g].opcode != NULL; g++)
 	{
-		if (strcmp(instruct[g].opcode, statement->token[0]) == 0)
+		if (strcmp(instruct[g].opcode, statements->token[0]) == 0)
 		{
-			statement->instruct->opcode = instruct[g].opcode;
-			statement->f = instruct[g].f;
+			statements->instruct->opcode = instruct[g].opcode;
+			statements->f = instruct[g].f;
 			return;
 		}
 	}
@@ -45,7 +53,7 @@ void fetch_instructions(void)
 void instruct_error(void)
 {
 	dprintf(2, "L%d; Unkown instruction %s\n",
-			statement->line_count, statement_token[0]);
+			statements->line_count, statements_token[0]);
 	s_close();
 	free_token();
 	free_arg();
@@ -58,12 +66,12 @@ void run_instructions(void)
 {
 	stack_t *stack = NULL;
 
-	if (statement->token_num == 0) /* Check if there are no instructions to run */
+	if (statements->token_num == 0) /* Check if there are no instructions to run */
 	{
 		return;
 	}
 	else
 	{
-	statement->instruct->f(&stack, statement->line_num); /** Execute the instruction function */
+	statements->instruct->f(&stack, statements->line_num);
 	}
 }

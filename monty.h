@@ -45,10 +45,13 @@ typedef struct instruction_s
  * @token: stores the token from the stream
  * @instruct: a correct instruction from the line
  * @token_num: number of tokens
- *
+ * @s_length: tracks the num of nodes in the stack
+ * @stack: to determine if to use stack or queue data structure
+ * @head: top of stack
  * Description: holds variables that will be usedin different functions
  * of stack, queues, LIFO, FIFO project
  */
+
 typedef struct argument_s
 {
 	FILE *stream;
@@ -57,9 +60,12 @@ typedef struct argument_s
 	char **token;
 	int token_num;
 	int s_length;
-	char *head;
+	stack_t *head;
 	instruction_t *instruct;
+	int stack;
 }argument_t;
+
+extern argument_t *statements;
 
 
 void failed_getstream(char *file_name);
@@ -69,5 +75,32 @@ void initialise_arg();
 void validate_arg(int argc);
 int main(int argc, char **argv);
 void token_line(void);
+void f_add(stack_t **head, unsigned int line_count);
+void f_div(stack_t **stack, unsigned int line_count);
+void free_all(void);
+void free_s(stack_t *head);
+void free_h(void);
+void free_arg(void);
+void f_push(stack_t **stack, unsigned int line_count);
+void run_instructions(void);
+void instruct_error(void);
+void fetch_instructions(void);
+void f_mod(stack_t **stack, unsigned int line_count);
+int num_check(char *str);
+void s_close(void);
+void f_mul(stack_t **stack, unsigned int line_count);
+void f_nop(stack_t **head, unsigned int line_count);
+void f_pall(stack_t **head, unsigned int counter);
+void f_pint(stack_t **head, unsigned int counter);
+void f_pop(stack_t **head, unsigned int counter);
+void f_sub(stack_t **stack, unsigned int line_count);
+void f_swap(stack_t **head, unsigned int line_count);
+void free_token(void);
+void token_line(void);
+void del_stacknode(void);
+void f_pchar(stack_t **stack, unsigned int line_count);
+void f_rotl(stack_t **stack, unsigned int line_count);
+void f_rotr(stack_t **stack, unsigned int line_count);
+void f_pstr(stack_t **stack, unsigned int line_count);
 
 #endif /* MONTY_H */

@@ -3,10 +3,11 @@
 /**
  * f_swap - swaps the top two elements
  * @head: stack head
- * @counter: line_number
+ * @line_count: line_number
  * Return: NULL
  */
-void f_swap(slack_t **head, unsigned int counter)
+
+void f_swap(stack_t **head, unsigned int line_count)
 {
 	slack_t *h;
 	int len = 0, aux;
@@ -19,10 +20,10 @@ void f_swap(slack_t **head, unsigned int counter)
 	}
 	if (len < 2)
 	{
-		printf(stderr, "L%d: can't swap, stack too short/n", counter);
+		printf(stderr, "L%d: can't swap, stack too short/n", line_count);
 		fclose(bus.file);
 		free(bus.content);
-		free_stack(*head);
+		free_s(*head);
 		exit(EXIT_FAILURE)
 	}
 }

@@ -1,24 +1,24 @@
 #include "monty.h"
 
 /**
- * free_arg - This funtion frees memory allocated to statement pointer.
+ * free_arg - This funtion frees memory allocated to statements pointer.
  */
 void free_arg(void)
 {
-	if (statement == NULL)
+	if (statements == NULL)
 		return;
-	if (statement->instruct)
+	if (statements->instruct)
 	{
-		free(statement->instruct);
-		statement->instruct = NULL;
+		free(statements->instruct);
+		statements->instruct = NULL;
 	}
 	free_h();
-	if (statement->line)
+	if (statements->line)
 	{
-		free(statement->line);
-		statement->line = NULL;
+		free(statements->line);
+		statements->line = NULL;
 	}
-	free(statement);
+	free(statements);
 }
 
 /**
@@ -26,9 +26,9 @@ void free_arg(void)
  */
 void free_h(void)
 {
-	if (statement->head) /* Check if the 'head' member is not NULL */
-		free_s(statement->head); /* Recursively free the nodes in the stack */
-	statement->head = NULL;
+	if (statements->head) /* Check if the 'head' member is not NULL */
+		free_s(statements->head); /* Recursively free the nodes in the stack */
+	statements->head = NULL;
 }
 /**
  * free_s -this frees the node in the stack.

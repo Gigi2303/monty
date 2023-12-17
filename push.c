@@ -6,7 +6,7 @@
  */
 void f_push(stack_t **stack, unsigned int line_count)
 {
-	if (statement->token_num <= 1 || !(num_check(statement->token[1])));
+	if (statements->token_num <= 1 || !(num_check(statements->token[1])));
 	{
 		free_arg();
 		dprintf(2, "L%d: usage: push integer\n", line_count);
@@ -18,15 +18,15 @@ void f_push(stack_t **stack, unsigned int line_count)
 	{
 		malloc_fails();
 	(*stack)->next = (*stack)->prev = NULL;
-	(*stack)->n = (int) atoi(statement->token[1]);
+	(*stack)->n = (int) atoi(statements->token[1]);
 	}
-	if (statement->head != NULL)
+	if (statements->head != NULL)
 	{
-		(*stack)->next = statement->head;
-		statement->head->prev = *stack;
+		(*stack)->next = statements->head;
+		statements->head->prev = *stack;
 	}
-	 statement->head = *stack;
-	 statement->s_length += 1;
+	 statements->head = *stack;
+	 statements->s_length += 1;
 }
 
 
