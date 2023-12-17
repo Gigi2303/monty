@@ -13,7 +13,7 @@ void f_mul(stack_t **stack, unsigned int line_count)
 
 	if (statements->s_length < 2)
 	{
-		dprintf(2, "L%d: can't mul, stack too short\n", line_count);
+		fprintf(stderr, "L%d: can't mul, stack too short\n", line_count);
 		free_all();
 		exit(EXIT_FAILURE);
 	}

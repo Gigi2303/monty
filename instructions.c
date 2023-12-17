@@ -8,21 +8,21 @@ void fetch_instructions(void)
 	int g;
 
 	instruction_t instruct[] = {
-		{"push", _push},
-		{"pall", _pall},
-		{"pint", _pint},
-		{"pop", _pop},
-		{"swap", _swap},
-		{"add", _add},
-		{"nop", _nop},
-		{"sub", _sub},
-		{"mul", _mul},
-		{"div", _div},
-		{"mod", _mod},
-		{"pchar", _pchar},
-		{"pstr", _pstr},
-		{"rotl", _rotl},
-		{"rotr", _rotr},
+		{"push", f_push},
+		{"pall", f_pall},
+		{"pint", f_pint},
+		{"pop", f_pop},
+		{"swap", f_swap},
+		{"add", f_add},
+		{"nop", f_nop},
+		{"sub", f_sub},
+		{"mul", f_mul},
+		{"div", f_div},
+		{"mod", f_mod},
+		{"pchar", f_pchar},
+		{"pstr", f_pstr},
+		{"rotl", f_rotl},
+		{"rotr", f_rotr},
 		{NULL, NULL},
 	};
 	if (statements->token_num == 0)
@@ -31,7 +31,7 @@ void fetch_instructions(void)
 	if (statements->token[0][0] == '#')
 	{
 		statements->instruct->opcode = "nop";
-		statements->instruct->f = nop;
+		statements->instruct->f = f_nop;
 		return;
 	}
 
@@ -52,8 +52,8 @@ void fetch_instructions(void)
  */
 void instruct_error(void)
 {
-	dprintf(2, "L%d; Unkown instruction %s\n",
-			statements->line_count, statements_token[0]);
+	fprintf(stderr, "L%d; Unkown instruction %s\n",
+			statements->line_count, statements->token[0]);
 	s_close();
 	free_token();
 	free_arg();
@@ -72,6 +72,6 @@ void run_instructions(void)
 	}
 	else
 	{
-	statements->instruct->f(&stack, statements->line_num);
+	statements->instruct->f(&stack, statements->line_count);
 	}
 }

@@ -1,6 +1,7 @@
+#define _POSIX_C_SOURCE 200809L
 #include "monty.h"
 
-argument_t *statementss = NULL;
+argument_t *statements = NULL;
 
 /**
  * main - This is the main entry function for monty program
@@ -15,11 +16,11 @@ int main(int argc, char **argv)
 
 	validate_arg(argc);
 	initialise_arg();
-	get_stream(argv[1]);
+	getstream(argv[1]);
 
-	while (getline(&statementss->line, &o, statementss->stream != -1))
+	while (getline(&statements->line, &o, statements->stream != "NULL"))
 	{
-		statementss->line_num += 1;
+		statements->line_count += 1;
 		token_line(); /* breakdown lines into words */
 		fetch_instructions(); /*fetch opcodes from toneized lines*/
 		run_instructions(); /*run functions in opcodes*/

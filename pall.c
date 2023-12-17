@@ -6,11 +6,11 @@
  * @counter: NULL
  * return: NULL
  */
-void f_pall(stack_t **head, unsign int counter)
+void f_pall(stack_t **head, unsigned int counter)
 {
 	stack_t *h;
 
-	counter(void);
+	(void)counter;
 
 	h = *head;
 	if (h == NULL)

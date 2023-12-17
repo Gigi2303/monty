@@ -14,7 +14,7 @@ void f_pchar(stack_t **stack, unsigned int line_count)
 
         if (statements->head == NULL)
         {
-                dprintf(2, "L%d: can't pchar, stack too short\n", line_count);
+                fprintf(stderr, "L%d: can't pchar, stack too short\n", line_count);
                 free_all();
                 exit(EXIT_FAILURE);
         }
@@ -23,10 +23,10 @@ void f_pchar(stack_t **stack, unsigned int line_count)
 
         if (temp1->n < 0 || temp1->n > 127)
         {
-                dprintf(2, "L%d: can't pchar, value out of range\n", line_count);
+		fprintf(stderr, "L%d: can't pchar, value out of range\n", line_count);
                 free_all();
                 exit(EXIT_FAILURE);
         }
 
-        printf("%c\n", temp->n);
+        printf("%c\n", temp1->n);
 }

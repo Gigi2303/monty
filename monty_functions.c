@@ -9,7 +9,7 @@ void validate_arg(int argc)
 {
 	if (argc == 2)
 		return;
-	dprintf(2, "Usage: monty file\n");
+	fprintf(stderr, "Usage: monty file\n");
 	exit(EXIT_FAILURE);
 }
 
@@ -19,16 +19,17 @@ void validate_arg(int argc)
  */
 void initialise_arg(void)
 {
-	statementss = malloc(sizeof(argument_t));
-	if (statementss == NULL)
+	statements = malloc(sizeof(argument_t));
+	if (statements == NULL)
 		malloc_fails();
 
-	statementss->line = NULL;
-	statementss->stream = NULL;
-	statementss->token_num = 0;
-	statementss->line_count = 0;
-	statementss->s_length = 0;
-	statementss->head = NULL;
+	statements->line = NULL;
+	statements->stream = NULL;
+	statements->token_num = 0;
+	statements->line_count = 0;
+	statements->s_length = 0;
+	statements->head = NULL;
+	statements->stack = 1;
 }
 
 /**
@@ -37,7 +38,7 @@ void initialise_arg(void)
  */
 void malloc_fails(void)
 {
-	dprintf(2, "Error: malloc failed\n");
+	fprintf(stderr, "Error: malloc failed\n");
 	free_arg();
 	exit(EXIT_FAILURE);
 }
@@ -48,7 +49,7 @@ void malloc_fails(void)
  */
 void failed_getstream(char *file_name)
 {
-	dprintf(stderr, "Error: Can't open file %s\n");
+	fprintf(stderr, "Error: Can't open file %s\n", file_name);
 	free_arg();
 	exit(EXIT_FAILURE);
 }
@@ -58,17 +59,18 @@ void failed_getstream(char *file_name)
  */
 void getstream(char *file_name)
 {
-	int cg;
+	FILE *cg;
 
-	gc = open(file_name, O_RDONLY);
-	if (gc == -1)
+	cg = fopen(file_name, "r");
+	if (cg == NULL)
 	{
 		failed_getstream(file_name);
 	}
-	statements->stream = cg(cg, "r");
+
+	statements->stream = fopen(file_name, "r");
 	if (statements->stream == NULL)
 	{
-		close(cg);
+		fclose(cg);
 		failed_getstream(file_name);
 	}
 }

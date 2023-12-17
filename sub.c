@@ -1,4 +1,5 @@
 #include "monty.h"
+#include <stdio.h>
 
 /**
  * f_sub - sub top element of stack from the second top stack
@@ -13,7 +14,7 @@ void f_sub(stack_t **stack, unsigned int line_count)
 
 	if (statements->s_length < 2)
 	{
-		dprintf(2, "L%d: can't sub, stack too short\n", line_count);
+		fprintf(stderr, "L%d: can't sub, stack too short\n", line_count);
 		free_all();
 		exit(EXIT_FAILURE);
 	}

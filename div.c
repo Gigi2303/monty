@@ -13,7 +13,7 @@ void f_div(stack_t **stack, unsigned int line_count)
 
 	if (statements->s_length < 2)
 	{
-		dprintf(2, "L%d: can't div, stack too short\n", line_count);
+		fprintf(stderr, "L%d: can't div, stack too short\n", line_count);
 		free_all();
 		exit(EXIT_FAILURE);
 	}
@@ -23,7 +23,7 @@ void f_div(stack_t **stack, unsigned int line_count)
 
 	if (temp1->n == 0)
 	{
-		dprintf(2, "L%d: division by zero\n", line_count);
+		fprintf(stderr, "L%d: division by zero\n", line_count);
 		free_all();
 		exit(EXIT_FAILURE);
 	}

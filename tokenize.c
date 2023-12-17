@@ -12,7 +12,7 @@ void token_line(void)
 	char *token = NULL, *temp = NULL;
 
 	temp = malloc(sizeof(char) * (strlen(statements->line) + 1));
-	strcpy(temp, statementss->line);
+	strcpy(temp, statements->line);
 	statements->token_num = 0;
 	token = strtok(temp, delim);
 
@@ -28,11 +28,12 @@ void token_line(void)
 		statements->token[c] = malloc(sizeof(char) * (strlen(token) + 1));
 		if (statements->token[c] == NULL)
 		malloc_fails();
+
 		strcpy(statements->token[c], token);
-		token = strok(NULL, delim);
+		token = strtok(NULL, delim);
 		c++;
 	}
-	statements->token[c];
+	statements->token[c] = NULL;
 	free(temp);
 }
 
