@@ -14,7 +14,7 @@ void f_push(stack_t **stack, unsigned int line_count)
 	}
 
 	*stack = malloc(sizeof(stack_t));
-	if(*stack == NULL)
+	if (*stack == NULL)
 	{
 		malloc_fails();
 	(*stack)->next = (*stack)->prev = NULL;
