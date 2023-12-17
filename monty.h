@@ -63,6 +63,7 @@ typedef struct argument_s
 	stack_t *head;
 	instruction_t *instruct;
 	int stack;
+	void (*f)(stack_t **, unsigned int);
 }argument_t;
 
 extern argument_t *statements;

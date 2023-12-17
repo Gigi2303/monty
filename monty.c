@@ -18,7 +18,7 @@ int main(int argc, char **argv)
 	initialise_arg();
 	getstream(argv[1]);
 
-	while (getline(&statements->line, &o, &statements->stream != NULL))
+	while (getline(&statements->line, &o, statements->stream) != -1)
 	{
 		statements->line_count += 1;
 		token_line(); /* breakdown lines into words */

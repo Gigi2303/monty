@@ -1,14 +1,13 @@
 #include "monty.h"
 
 /**
- * fetch_instructions - sets the instructions based on the first line token
+ * fetch_instructions -  sets the instructions based on the first line token
  */
 void fetch_instructions(void)
 {
 	int g;
 
-	instruction_t instruct[] =
-	{
+	instruction_t instruct[] = {
 		{"push", f_push},
 		{"pall", f_pall},
 		{"pint", f_pint},
@@ -25,8 +24,7 @@ void fetch_instructions(void)
 		{"rotl", f_rotl},
 		{"rotr", f_rotr},
 		{NULL, NULL},
-	}
-
+	};
 	if (statements->token_num == 0)
 		return;
 
@@ -36,8 +34,9 @@ void fetch_instructions(void)
 		statements->instruct->f = f_nop;
 		return;
 	}
-	for (instruct[g].opcode != NULL; g++)
 
+	for (; instruct[g].opcode != NULL; g++)
+	{
 		if (strcmp(instruct[g].opcode, statements->token[0]) == 0)
 		{
 			statements->instruct->opcode = instruct[g].opcode;
