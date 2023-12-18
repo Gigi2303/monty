@@ -66,7 +66,7 @@ void run_instructions(void)
 {
 	stack_t *stack = NULL;
 
-	if (statements->token_num == 0) /* Check if there are no instructions to run */
+	if (statements->token_num == 0)
 	{
 		return;
 	}

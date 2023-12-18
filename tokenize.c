@@ -44,7 +44,7 @@ void free_token(void)
 {
 	int cg;
 
-	if (NULL == statements->token)
+	if (statements->token == NULL)
 		return;
 	while (statements->token[cg])
 	{

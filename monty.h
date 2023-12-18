@@ -18,9 +18,9 @@
  */
 typedef struct stack_s
 {
-        int n;
-        struct stack_s *prev;
-        struct stack_s *next;
+	int n;
+	struct stack_s *prev;
+	struct stack_s *next;
 } stack_t;
 
 /**
@@ -33,8 +33,8 @@ typedef struct stack_s
  */
 typedef struct instruction_s
 {
-        char *opcode;
-        void (*f)(stack_t **stack, unsigned int line_number);
+	char *opcode;
+	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
 /**
@@ -48,6 +48,7 @@ typedef struct instruction_s
  * @s_length: tracks the num of nodes in the stack
  * @stack: to determine if to use stack or queue data structure
  * @head: top of stack
+ * @f: function to handle the opcode
  * Description: holds variables that will be usedin different functions
  * of stack, queues, LIFO, FIFO project
  */
@@ -63,8 +64,8 @@ typedef struct argument_s
 	stack_t *head;
 	instruction_t *instruct;
 	int stack;
-	void (*f)(stack_t **, unsigned int);
-}argument_t;
+	void (*f)(stack_t **, unsigned int line_count);
+} argument_t;
 
 extern argument_t *statements;
 
@@ -72,7 +73,7 @@ extern argument_t *statements;
 void failed_getstream(char *file_name);
 void malloc_fails(void);
 void getstream(char *file_name);
-void initialise_arg();
+void initialise_arg(void);
 void validate_arg(int argc);
 int main(int argc, char **argv);
 void token_line(void);

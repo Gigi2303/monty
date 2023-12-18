@@ -14,14 +14,14 @@ void f_rotr(stack_t **stack, unsigned int line_count)
 	if (statements->s_length < 2)
 		return;
 	temp = statements->head;
-	while(temp)
+	while (temp)
 	{
 		if (temp->next == NULL)
 		{
 			last = temp;
 			break;
 		}
-		temp = temp-> next;
+		temp = temp->next;
 	}
 	last->prev->next = NULL;
 	last->next = statements->head;
